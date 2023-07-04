@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const response = yield fetch(`${getApiUrl()}/api/comments/list?hostname=${hostname}&pathname=${pathname}`);
         const commentData = yield response.json();
         if (!Array.isArray(commentData)) {
-            throw new Error('Data is not proper type.');
+            throw new Error('Data is not an array.');
         }
         const comments = commentData;
         console.log({ comments });

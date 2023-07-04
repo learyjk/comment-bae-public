@@ -72,7 +72,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 const response = yield fetch(`${getApiUrl()}/api/comments/add`, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                        'Access-Control-Allow-Origin': '*'
                     },
                     body: JSON.stringify(commentData)
                 });

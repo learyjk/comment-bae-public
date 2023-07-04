@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
             throw new Error('Data is not an array');
         }
         const comments = commentData;
-        console.log('comments:');
         console.log({ comments });
         const item = document.querySelector(`[${TEMPLATE_PREFIX}=${TEMPLATE_SELECTORS.ITEM}]`);
         const list = document.querySelector(`[${TEMPLATE_PREFIX}=${TEMPLATE_SELECTORS.LIST}]`);

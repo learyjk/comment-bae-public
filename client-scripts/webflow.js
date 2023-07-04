@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const form = document.querySelector(`[${FORM_PREFIX}=${FORM_SELECTORS.FORM}]`);
         if (!form) {
             console.error('No comment form element found');
-            throw new Error('Error getting form.');
+            throw new Error('Error getting the form element.');
         }
         const formUsername = form.querySelector(`[${FORM_PREFIX}=${FORM_SELECTORS.USERNAME}]`);
         const formText = form.querySelector(`[${FORM_PREFIX}=${FORM_SELECTORS.TEXT}]`);

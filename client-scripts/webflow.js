@@ -17,10 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const response = yield fetch(`${getApiUrl()}/api/comments/list?hostname=${hostname}&pathname=${pathname}`);
         const commentData = yield response.json();
         if (!Array.isArray(commentData)) {
-            throw new Error('Data is not an array');
+            throw new Error('Data is not proper type.');
         }
         const comments = commentData;
-        console.log('com:');
         console.log({ comments });
         const item = document.querySelector(`[${TEMPLATE_PREFIX}=${TEMPLATE_SELECTORS.ITEM}]`);
         const list = document.querySelector(`[${TEMPLATE_PREFIX}=${TEMPLATE_SELECTORS.LIST}]`);

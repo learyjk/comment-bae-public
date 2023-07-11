@@ -9,6 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { formatDistanceToNow, getApiUrl } from './helpers.js';
 import { FORM_PREFIX, FORM_SELECTORS, TEMPLATE_PREFIX, TEMPLATE_SELECTORS } from './selectors.js';
+let item;
+let list;
 const fetchComments = () => __awaiter(void 0, void 0, void 0, function* () {
     const hostname = window.location.hostname;
     const pathname = window.location.pathname;
@@ -19,8 +21,6 @@ const fetchComments = () => __awaiter(void 0, void 0, void 0, function* () {
     }
     const comments = commentData;
     console.log({ comments });
-    const item = document.querySelector(`[${TEMPLATE_PREFIX}=${TEMPLATE_SELECTORS.ITEM}]`);
-    const list = document.querySelector(`[${TEMPLATE_PREFIX}=${TEMPLATE_SELECTORS.LIST}]`);
     if (!item || !list) {
         !item && console.error('No comment item element found');
         !list && console.error('No comment list element found');
@@ -41,13 +41,20 @@ const fetchComments = () => __awaiter(void 0, void 0, void 0, function* () {
         commentText.textContent = comment.text;
         commentUsername.textContent = comment.username;
         commentTimestamp.textContent = formattedTime;
-        list.appendChild(clone);
+        list === null || list === void 0 ? void 0 : list.appendChild(clone);
     });
 });
 document.addEventListener('DOMContentLoaded', function () {
     return __awaiter(this, void 0, void 0, function* () {
+        item = document.querySelector(`[${TEMPLATE_PREFIX}=${TEMPLATE_SELECTORS.ITEM}]`);
+        list = document.querySelector(`[${TEMPLATE_PREFIX}=${TEMPLATE_SELECTORS.LIST}]`);
         console.log(`fetching comments from ${getApiUrl()}`);
-        yield fetchComments();
+        try {
+            yield fetchComments();
+        }
+        catch (err) {
+            console.error(err);
+        }
         // FORM
         const form = document.querySelector(`[${FORM_PREFIX}=${FORM_SELECTORS.FORM}]`);
         if (!form) {

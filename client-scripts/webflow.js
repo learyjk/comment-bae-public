@@ -14,7 +14,13 @@ let list;
 const fetchComments = () => __awaiter(void 0, void 0, void 0, function* () {
     const hostname = window.location.hostname;
     const pathname = window.location.pathname;
-    const response = yield fetch(`${getApiUrl()}/api/comments/list?hostname=${hostname}&pathname=${pathname}`);
+    const response = yield fetch(`${getApiUrl()}/api/comments/list?hostname=${hostname}&pathname=${pathname}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Client-URL': window.location.href
+        }
+    });
     const commentData = yield response.json();
     if (!Array.isArray(commentData)) {
         throw new Error('Data is not an array.');
